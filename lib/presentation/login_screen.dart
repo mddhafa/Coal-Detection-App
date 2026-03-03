@@ -188,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                               const SizedBox(height: 6),
                               Text(
-                                'di GudApp',
+                                'di CoalDetecApp',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 28,
@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                'Masuk untuk mengelola gudang Anda',
+                                'Masuk untuk mendeteksi',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 14,
@@ -346,7 +346,7 @@ class _LoginScreenState extends State<LoginScreen>
 
                               // Footer
                               Text(
-                                '© 2025 GudApp',
+                                '© 2025 CoalDetecApp',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.grey[400],
