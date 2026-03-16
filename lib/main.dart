@@ -1,14 +1,42 @@
 import 'package:coalmobile_app/presentation/auth/bloc/login_bloc.dart';
+import 'package:coalmobile_app/presentation/auth/bloc/register_bloc.dart';
 import 'package:coalmobile_app/presentation/home_screen.dart';
 import 'package:coalmobile_app/presentation/login_screen.dart';
+import 'package:coalmobile_app/presentation/recaps/bloc/recaps_bloc.dart';
+import 'package:coalmobile_app/presentation/spalsh_screen.dart';
 import 'package:coalmobile_app/repository/authrepo.dart';
+import 'package:coalmobile_app/repository/recap_repo.dart';
 import 'package:coalmobile_app/services/service_http.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  // final cameras = await availableCameras();
+  // runApp(MyApp(cameras: cameras));
   runApp(const MyApp());
+
 }
+
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+
+//   final cameras = await availableCameras(); // <- WAJIB dipanggil di sini
+//   runApp(MyApp(cameras: cameras));
+// }
+
+// class MyApp extends StatelessWidget {
+//   final List<CameraDescription> cameras;
+//   const MyApp({super.key, required this.cameras});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Realtime Camera Stream',
+//       theme: ThemeData(useMaterial3: true),
+//       home: CameraPage(cameras: cameras),
+//     );
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,10 +49,17 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginBloc(authrepo: Authrepo(ServiceHttp())),
         ),
+        BlocProvider(
+          create: (context) => RegisterBloc(authrepo: Authrepo(ServiceHttp())),
+        ),
+        BlocProvider(
+          create:
+              (context) => RecapsBloc(recapRepo: MonitoringRepo(ServiceHttp())),
+        ),
       ],
       child: const MaterialApp(
         title: 'Detection',
-        home: LoginScreen(),
+        home: SpalshScreen(),
       ),
     );
   }
