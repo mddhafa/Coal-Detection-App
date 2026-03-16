@@ -4,8 +4,18 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ServiceHttp {
-  final String baseUrl = 'http://192.168.18.15:3000/api/';
-  final Storage = FlutterSecureStorage();
+  final String baseUrl = 'http://10.0.2.2:3000/api/';
+  // final String baseUrl = 'http://192.168.18.15:3000/api/';
+  final storage = FlutterSecureStorage();
+
+  //get
+  Future<http.Response> getWithToken(String endPoint) async {
+    final token = await storage.read(key: 'authToken');
+    return http.get(
+      Uri.parse('$baseUrl$endPoint'),
+      headers: {'Authorization': 'Bearer $token', 'Accept': 'application/json'},
+    );
+  }
 
   //post
   Future<http.Response> post(String endpoint, Map<String, dynamic> body) async {
@@ -29,18 +39,30 @@ class ServiceHttp {
     String endPoint,
     Map<String, dynamic> body,
   ) async {
-    final token = await Storage.read(key: 'authToken');
+    final token = await storage.read(key: 'authToken');
+
+    print("TOKEN SENT: $token");
+
+    if (token == null) {
+      throw Exception("Token tidak ditemukan. User belum login.");
+    }
+
     final url = Uri.parse('$baseUrl$endPoint');
+
     try {
       final response = await http.post(
         url,
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json',
+          'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
         },
         body: jsonEncode(body),
       );
+
+      print("STATUS CODE: ${response.statusCode}");
+      print("RESPONSE BODY: ${response.body}");
+
       return response;
     } catch (e) {
       throw Exception('Failed to post data with token: $e');
