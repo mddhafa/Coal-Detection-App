@@ -1,6 +1,7 @@
 import 'package:coalmobile_app/data/model/request/login_request_model.dart';
 import 'package:coalmobile_app/presentation/auth/bloc/login_bloc.dart';
 import 'package:coalmobile_app/presentation/home_screen.dart';
+import 'package:coalmobile_app/presentation/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -338,6 +339,27 @@ class _LoginScreenState extends State<LoginScreen>
                                       color: Colors.grey[500],
                                       fontSize: 13.5,
                                     ),
+                                    children: [
+                                      TextSpan(
+                                        text: 'Daftar',
+                                        style: TextStyle(
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        recognizer:
+                                            TapGestureRecognizer()
+                                              ..onTap = () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder:
+                                                        (context) =>
+                                                            RegisterScreen(), // ganti dengan page register kamu
+                                                  ),
+                                                );
+                                              },
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
