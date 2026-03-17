@@ -35,7 +35,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       final response = await profileRepository.updateProfile(event.itemData);
 
-      if (response.data != null) {
+      if (response != null) {
         emit(ProfileSuccess(message: 'Profil berhasil dibuat!'));
         add(GetProfile()); // Refresh the profile after creation
       } else {
