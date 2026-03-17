@@ -1,10 +1,10 @@
 import 'package:coalmobile_app/presentation/auth/bloc/login_bloc.dart';
 import 'package:coalmobile_app/presentation/auth/bloc/register_bloc.dart';
-import 'package:coalmobile_app/presentation/home_screen.dart';
-import 'package:coalmobile_app/presentation/login_screen.dart';
+import 'package:coalmobile_app/presentation/profile/bloc/profile_bloc.dart';
 import 'package:coalmobile_app/presentation/recaps/bloc/recaps_bloc.dart';
 import 'package:coalmobile_app/presentation/spalsh_screen.dart';
 import 'package:coalmobile_app/repository/authrepo.dart';
+import 'package:coalmobile_app/repository/profile_repo.dart';
 import 'package:coalmobile_app/repository/recap_repo.dart';
 import 'package:coalmobile_app/services/service_http.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +55,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create:
               (context) => RecapsBloc(recapRepo: MonitoringRepo(ServiceHttp())),
+        ),
+        BlocProvider(
+          create:
+              (context) => ProfileBloc(
+                profileRepository: ProfileRepository(ServiceHttp()),
+              ),
         ),
       ],
       child: const MaterialApp(
