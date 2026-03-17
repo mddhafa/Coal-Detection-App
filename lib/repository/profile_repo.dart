@@ -35,9 +35,7 @@ class ProfileRepository {
     }
   }
 
-  Future<ProfileResponseModel> updateProfile(
-    Map<String, dynamic> updatedData,
-  ) async {
+  Future<bool> updateProfile(Map<String, dynamic> updatedData) async {
     try {
       final response = await _serviceHttp.putWithToken(
         "profile/update",
@@ -45,8 +43,7 @@ class ProfileRepository {
       );
 
       if (response.statusCode == 200) {
-        final jsonResponse = json.decode(response.body);
-        return ProfileResponseModel.fromMap(jsonResponse);
+        return true;
       } else {
         throw Exception(
           "Gagal memperbarui profil: ${response.statusCode} ${response.body}",
