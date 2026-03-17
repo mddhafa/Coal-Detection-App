@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen>
     return SliverAppBar(
       expandedHeight: 160,
       pinned: true,
-      backgroundColor: primaryRed,
+      backgroundColor: (Color(0xFF3A3A3A)),
       automaticallyImplyLeading: false,
 
       shape: const RoundedRectangleBorder(
@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen>
                           child: const CircleAvatar(
                             radius: 18,
                             backgroundColor: Colors.white,
-                            child: Icon(Icons.person, color: primaryRed),
+                            child: Icon(Icons.person, color: Color(0xFF3A3A3A)),
                           ),
                         ),
 
@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen>
             _MenuCard(
               icon: Icons.analytics,
               label: "Laporan",
-              color: Colors.deepPurple,
+              color: const Color.fromARGB(255, 65, 56, 82),
 
               onTap: () {
                 Navigator.push(
@@ -295,12 +295,16 @@ class _HomeScreenState extends State<HomeScreen>
 
             actions: [
               TextButton(
+                style: TextButton.styleFrom(foregroundColor: Color(0xFF3A3A3A)),
                 onPressed: () => Navigator.pop(context),
                 child: const Text("Batal"),
               ),
 
               ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF3A3A3A),
+                  foregroundColor: Colors.white,
+                ),
 
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(

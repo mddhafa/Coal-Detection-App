@@ -1,3 +1,4 @@
+import 'package:coalmobile_app/core/appbarcustom.dart';
 import 'package:coalmobile_app/presentation/recapscreen/daily_screen.dart';
 import 'package:coalmobile_app/presentation/recapscreen/monthly_screen.dart';
 import 'package:coalmobile_app/presentation/recapscreen/weekly_screen.dart';
@@ -9,7 +10,7 @@ class RecapsMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Recap Monitoring")),
+      appBar: const CustomAppBar(title: "Recaps"),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(

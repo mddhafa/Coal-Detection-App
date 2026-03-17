@@ -24,9 +24,9 @@ class _LoginScreenState extends State<LoginScreen>
   late Animation<double> _fadeAnim;
   late Animation<Offset> _slideAnim;
 
-  static const Color _primaryRed = Color(0xFF932520);
-  static const Color _primaryRedDark = Color(0xFF6E1B17);
-  static const Color _primaryRedLight = Color(0xFFFFECEB);
+  static const Color _primaryRed = Color(0xFF3A3A3A);
+  static const Color _primaryRedDark = Color.fromARGB(255, 39, 39, 39);
+  static const Color _primaryRedLight = Color.fromARGB(255, 207, 204, 204);
 
   @override
   void initState() {

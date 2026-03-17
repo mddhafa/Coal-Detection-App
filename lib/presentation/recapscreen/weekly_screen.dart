@@ -1,3 +1,4 @@
+import 'package:coalmobile_app/core/appbarcustom.dart';
 import 'package:coalmobile_app/presentation/recaps/bloc/recaps_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,9 @@ class _WeeklyRecapScreenState extends State<WeeklyRecapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Weekly Recap"), centerTitle: true),
+      appBar: const CustomAppBar(title: "Weekly Recap"),
+
+      // appBar: AppBar(title: const Text("Weekly Recap"), centerTitle: true),
 
       body: Column(
         children: [
