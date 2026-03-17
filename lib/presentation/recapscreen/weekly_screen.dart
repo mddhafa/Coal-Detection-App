@@ -30,8 +30,12 @@ class _WeeklyRecapScreenState extends State<WeeklyRecapScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(20),
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF3A3A3A),
+                foregroundColor: Colors.white,
+              ),
               onPressed: () {
                 context.read<RecapsBloc>().add(GenerateWeeklyRecap());
               },

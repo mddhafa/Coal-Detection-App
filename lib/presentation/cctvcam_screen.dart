@@ -126,22 +126,39 @@ class _CctvHlsScreenState extends State<CctvHlsScreen> {
 
                   const SizedBox(height: 20),
 
-                  // contoh konten tambahan agar bisa discroll
                   Padding(
                     padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "CCTV Information",
+                          "Information",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        Divider(height: 20, thickness: 2),
+                        SizedBox(height: 20),
                         Text(
-                          "Monitoring CCTV area tambang batubara secara real-time menggunakan Raspberry Pi dan model deteksi objek.",
+                          "CCTV ID: CAM01",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "CCTV Model: V380 Pro Y06",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        SizedBox(height: 15),
+
+                        Text(
+                          "Monitoring CCTV pada belt conveyor secara real-time menggunakan Raspberry Pi 4 dan model YOLOv8 with EMA deteksi objek.",
                         ),
                       ],
                     ),

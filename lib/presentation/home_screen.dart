@@ -1,6 +1,8 @@
 import 'package:coalmobile_app/presentation/cctvcam_screen.dart';
+import 'package:coalmobile_app/presentation/information_screen.dart';
+import 'package:coalmobile_app/presentation/kelola%20user/kelolauser_screen.dart';
 import 'package:coalmobile_app/presentation/profile/profile_screen.dart';
-import 'package:coalmobile_app/presentation/recaps_screen.dart';
+import 'package:coalmobile_app/presentation/recapscreen/recaps_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:coalmobile_app/presentation/login_screen.dart';
 
@@ -19,8 +21,6 @@ class _HomeScreenState extends State<HomeScreen>
   late Animation<double> _fadeAnim;
 
   bool get isAdmin => widget.userRole == 'admin';
-
-  static const Color primaryRed = Color(0xFF932520);
 
   @override
   void initState() {
@@ -75,6 +75,9 @@ class _HomeScreenState extends State<HomeScreen>
                     if (isAdmin) ...[
                       const SizedBox(height: 30),
                       _buildAdminSection(),
+                    ] else ...[
+                      const SizedBox(height: 30),
+                      _buildUserSection(),
                     ],
                   ]),
                 ),
@@ -98,76 +101,89 @@ class _HomeScreenState extends State<HomeScreen>
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
       ),
 
-      flexibleSpace: FlexibleSpaceBar(
-        background: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      flexibleSpace: ClipRRect(
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(30)),
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF2E2E2E), Color(0xFF4A4A4A)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
 
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
 
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                  children: [
-                    const Text(
-                      "Coal Detection",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                    children: [
+                      const Text(
+                        "Coal Detection",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
 
-                    Row(
-                      children: [
-                        /// PROFILE BUTTON
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const ProfileScreen(),
+                      Row(
+                        children: [
+                          /// PROFILE BUTTON
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const ProfileScreen(),
+                                ),
+                              );
+                            },
+
+                            child: const CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.person,
+                                color: Color(0xFF3A3A3A),
                               ),
-                            );
-                          },
-
-                          child: const CircleAvatar(
-                            radius: 18,
-                            backgroundColor: Colors.white,
-                            child: Icon(Icons.person, color: Color(0xFF3A3A3A)),
+                            ),
                           ),
-                        ),
 
-                        const SizedBox(width: 10),
+                          const SizedBox(width: 10),
 
-                        /// LOGOUT BUTTON
-                        IconButton(
-                          icon: const Icon(Icons.logout, color: Colors.white),
-                          onPressed: () => _showLogoutDialog(context),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 10),
-
-                const Text(
-                  "Selamat Datang 👋",
-                  style: TextStyle(color: Colors.white70),
-                ),
-
-                Text(
-                  isAdmin ? "Panel Admin" : "Dashboard",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                          /// LOGOUT BUTTON
+                          IconButton(
+                            icon: const Icon(Icons.logout, color: Colors.white),
+                            onPressed: () => _showLogoutDialog(context),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ),
-              ],
+
+                  const SizedBox(height: 10),
+
+                  const Text(
+                    "Selamat Datang 👋",
+                    style: TextStyle(color: Colors.white70),
+                  ),
+
+                  Text(
+                    isAdmin ? "Panel Admin" : "Dashboard",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -182,11 +198,34 @@ class _HomeScreenState extends State<HomeScreen>
 
       children: [
         const Text(
-          "Fitur Utama",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          "Fitur",
+          style: TextStyle(
+            fontSize: 42,
+            fontWeight: FontWeight.w700,
+            fontFamily: "Poppins",
+            height: 1,
+          ),
         ),
 
-        const SizedBox(height: 16),
+        const Text(
+          "Utama",
+          style: TextStyle(
+            fontSize: 42,
+
+            fontFamily: "Poppins",
+            color: Color(0xFF3A3A3A),
+            height: 1,
+          ),
+        ),
+
+        const SizedBox(height: 3),
+
+        Text(
+          "Pilih fitur untuk mulai memantau dan menganalisis data",
+          style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+        ),
+
+        // const SizedBox(height: 16),
 
         GridView.count(
           crossAxisCount: 2,
@@ -253,27 +292,84 @@ class _HomeScreenState extends State<HomeScreen>
           ),
 
           child: Column(
-            children: const [
+            children: [
               ListTile(
                 leading: Icon(Icons.people),
                 title: Text("Kelola Pengguna"),
                 trailing: Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const KelolaUserPage()),
+                  );
+                },
               ),
 
               Divider(height: 1),
 
+              // ListTile(
+              //   leading: Icon(Icons.inventory),
+              //   title: Text("Kelola Barang"),
+              //   trailing: Icon(Icons.chevron_right),
+              // ),
+
+              // Divider(height: 1),
+
               ListTile(
-                leading: Icon(Icons.inventory),
-                title: Text("Kelola Barang"),
+                leading: Icon(Icons.info),
+                title: Text("Information"),
                 trailing: Icon(Icons.chevron_right),
+                onTap:
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const InformationScreen(),
+                      ),
+                    ),
               ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
-              Divider(height: 1),
+  //USER SECTION
+  Widget _buildUserSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
 
+      children: [
+        const Text(
+          "Fitur Lainnya",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+
+        const SizedBox(height: 16),
+
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+
+            boxShadow: [
+              BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(0.05)),
+            ],
+          ),
+
+          child: Column(
+            children: [
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text("Pengaturan"),
+                leading: Icon(Icons.info),
+                title: Text("Information"),
                 trailing: Icon(Icons.chevron_right),
+                onTap:
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const InformationScreen(),
+                      ),
+                    ),
               ),
             ],
           ),

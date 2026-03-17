@@ -1,3 +1,4 @@
+import 'package:coalmobile_app/core/appbarcustom.dart';
 import 'package:coalmobile_app/presentation/recaps/bloc/recaps_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,13 +22,17 @@ class _DailyRecapScreenState extends State<DailyRecapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Daily Recap"), centerTitle: true),
+      appBar: const CustomAppBar(title: "Daily Recap"),
 
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(20),
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF3A3A3A),
+                foregroundColor: Colors.white,
+              ),
               onPressed: () {
                 context.read<RecapsBloc>().add(GenerateDailyRecap());
               },
