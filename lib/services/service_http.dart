@@ -68,4 +68,27 @@ class ServiceHttp {
       throw Exception('Failed to post data with token: $e');
     }
   }
+
+  //put
+  Future<http.Response> putWithToken(
+    String endPoint,
+    Map<String, dynamic> body,
+  ) async {
+    final token = await storage.read(key: 'authToken');
+    final url = Uri.parse('$baseUrl$endPoint');
+    try {
+      final response = await http.put(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(body),
+      );
+      return response;
+    } catch (e) {
+      throw Exception('Failed to put data: $e');
+    }
+  }
 }
