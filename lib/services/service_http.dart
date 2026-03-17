@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:coalmobile_app/presentation/kelola%20user/bloc/kelola_user_bloc.dart';
+import 'package:coalmobile_app/repository/kelolauser_repo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -90,5 +93,19 @@ class ServiceHttp {
     } catch (e) {
       throw Exception('Failed to put data: $e');
     }
+  }
+
+  //delete
+  Future deleteWithToken(String url) async {
+    final token = await storage.read(key: 'authToken');
+    final response = await http.delete(
+      Uri.parse(baseUrl + url),
+      headers: {
+        "Content-Type": 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    return jsonDecode(response.body);
   }
 }
