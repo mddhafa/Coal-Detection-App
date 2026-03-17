@@ -1,9 +1,11 @@
 import 'package:coalmobile_app/presentation/auth/bloc/login_bloc.dart';
 import 'package:coalmobile_app/presentation/auth/bloc/register_bloc.dart';
+import 'package:coalmobile_app/presentation/kelola%20user/bloc/kelola_user_bloc.dart';
 import 'package:coalmobile_app/presentation/profile/bloc/profile_bloc.dart';
 import 'package:coalmobile_app/presentation/recaps/bloc/recaps_bloc.dart';
 import 'package:coalmobile_app/presentation/spalsh_screen.dart';
 import 'package:coalmobile_app/repository/authrepo.dart';
+import 'package:coalmobile_app/repository/kelolauser_repo.dart';
 import 'package:coalmobile_app/repository/profile_repo.dart';
 import 'package:coalmobile_app/repository/recap_repo.dart';
 import 'package:coalmobile_app/services/service_http.dart';
@@ -61,6 +63,11 @@ class MyApp extends StatelessWidget {
               (context) => ProfileBloc(
                 profileRepository: ProfileRepository(ServiceHttp()),
               ),
+        ),
+        BlocProvider(
+          create:
+              (context) =>
+                  KelolaUserBloc(kelolauserRepo: KelolauserRepo(ServiceHttp())),
         ),
       ],
       child: const MaterialApp(
