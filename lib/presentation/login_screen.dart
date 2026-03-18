@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   static const Color _primaryRed = Color(0xFF3A3A3A);
   static const Color _primaryRedDark = Color.fromARGB(255, 39, 39, 39);
-  static const Color _primaryRedLight = Color.fromARGB(255, 207, 204, 204);
+  static const Color _primaryRedLight = Color.fromARGB(255, 189, 189, 189);
 
   @override
   void initState() {
@@ -419,7 +419,7 @@ class _LoginScreenState extends State<LoginScreen>
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
-        prefixIcon: Icon(icon, color: const Color(0xFF932520), size: 20),
+        prefixIcon: Icon(icon, color: const Color(0xFF3A3A3A), size: 20),
         suffixIcon: suffixIcon,
         filled: true,
         fillColor: const Color(0xFFFAFAFA),
@@ -433,15 +433,21 @@ class _LoginScreenState extends State<LoginScreen>
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Color(0xFF932520), width: 1.8),
+          borderSide: const BorderSide(color: Color(0xFF3A3A3A), width: 1.8),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
+          borderSide: const BorderSide(
+            color: Color.fromARGB(255, 110, 110, 110),
+            width: 1.5,
+          ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.redAccent, width: 1.8),
+          borderSide: const BorderSide(
+            color: Color.fromARGB(255, 158, 158, 158),
+            width: 1.8,
+          ),
         ),
       ),
     );

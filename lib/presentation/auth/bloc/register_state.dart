@@ -9,9 +9,14 @@ final class RegisterLoading extends RegisterState {}
 
 final class RegisterSuccess extends RegisterState {
   final AuthResponseModel responseModel;
+  final String message;
 
-  RegisterSuccess({required this.responseModel});
+  RegisterSuccess({
+    required this.responseModel,
+    this.message = "Berhasil Register",
+  });
 }
+
 
 final class RegisterFailure extends RegisterState {
   final String error;
