@@ -87,7 +87,7 @@ class KelolauserRepo {
 
   Future<void> deleteUser(int id) async {
     try {
-      final response = await _serviceHttp.postWithToken("admin/delete/$id", {});
+      final response = await _serviceHttp.deleteWithToken("admin/delete/$id");
       if (response.statusCode == 200) {
         print('User berhasil dihapus');
       } else {
