@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         title: 'Detection',
-        home: SpalshScreen(),
+        home: SplashScreen(),
       ),
     );
   }
